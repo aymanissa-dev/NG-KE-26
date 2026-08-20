@@ -19,9 +19,9 @@ Full setup instructions, prerequisites, and architecture notes are in [`decode/R
 
 ## codelab/
 
-A step-by-step, self-contained walkthrough that rebuilds `decode/` from an empty folder — the same path taken while actually building it, including the real detours (a Gemini API access issue that never resolved, and the pivot to Hugging Face that came out of it). No prior Angular or Firebase experience required.
+**[Live: aymanissa-dev.github.io/NG-KE-26/codelab/](https://aymanissa-dev.github.io/NG-KE-26/codelab/)**
 
-_In progress — content coming._
+A 22-chapter, self-contained walkthrough that rebuilds `decode/` from an empty folder — the same path taken while actually building it, including the real detours (a Gemini API access issue that never resolved, and the pivot to Hugging Face that came out of it). Five phases: scaffolding, auth & data, the full UI, the AI layer, and wrap-up (persistence, history, delete account) — ending in a full end-to-end test checklist. No prior Angular or Firebase experience required.
 
 ## slides/
 
@@ -32,12 +32,12 @@ _In progress — content coming._
 ## Talk
 
 **"From Idea to MVP: Building AI-Powered Angular Apps with Firebase"**
-NG Kenya 2026 — 60-minute session
+NG Kenya 2026 — 40-minute session
 
 ## Author
 
 **Ayman Issa**
-[aymanissa.dev](https://aymanissa.dev) · [@aymanissa-dev](https://github.com/aymanissa-dev) · [@aymanissa_dev](https://x.com/aymanissa_dev) · [@aymanissa-dev](https://linkedin.com/aymanissa-dev)
+[aymanissa.dev](https://aymanissa.dev) · [@aymanissa-dev](https://github.com/aymanissa-dev) · [@aymanissa_dev](https://x.com/aymanissa_dev)
 
 ## License
 
