@@ -1,0 +1,145 @@
+:root {
+  --brand-red: #e62e4d;
+  --brand-pink: #e01e5a;
+  --brand-purple: #6929ca;
+  --brand-gradient: linear-gradient(
+    135deg,
+    var(--brand-red) 0%,
+    var(--brand-pink) 45%,
+    var(--brand-purple) 100%
+  );
+}
+
+html[data-theme='dark'] {
+  --bg: #101012;
+  --bg-subtle: #17171a;
+  --surface: #1b1b1f;
+  --surface-hover: #232327;
+  --text: #f2f2f4;
+  --text-muted: #b3b3ba;
+  --text-subtle: #7c7c85;
+  --border: #2a2a2f;
+  --border-strong: #3a3a41;
+  --success: #3fbf7a;
+  --warning: #e0a838;
+  --warning-bg: rgba(224, 168, 56, 0.1);
+  --danger: #f0596b;
+  --danger-bg: rgba(240, 89, 107, 0.1);
+  --code-bg: #17171a;
+  --dot: #232327;
+}
+
+html[data-theme='light'] {
+  --bg: #ffffff;
+  --bg-subtle: #f7f7f9;
+  --surface: #ffffff;
+  --surface-hover: #f0f0f3;
+  --text: #15151a;
+  --text-muted: #4a4a53;
+  --text-subtle: #6b6b76;
+  --border: #e2e2e8;
+  --border-strong: #c6c6d0;
+  --success: #157a43;
+  --warning: #8a5a06;
+  --warning-bg: rgba(138, 90, 6, 0.08);
+  --danger: #b42440;
+  --danger-bg: rgba(180, 36, 64, 0.08);
+  --code-bg: #f6f6f8;
+  --dot: #eceef1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-pink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--brand-gradient);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+  z-index: 100;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: revealUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.reveal.d1 {
+  animation-delay: 0.06s;
+}
+.reveal.d2 {
+  animation-delay: 0.12s;
+}
+.reveal.d3 {
+  animation-delay: 0.18s;
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+html[data-motion='off'] .reveal {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+html[data-density='compact'] {
+  --block-gap: 18px;
+}
+html {
+  --block-gap: 32px;
+  --code-font-size: 13.5px;
+}

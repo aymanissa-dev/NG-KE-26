@@ -1,0 +1,170 @@
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+  <symbol
+    id="i-sun"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+  >
+    <circle cx="12" cy="12" r="4" />
+    <path
+      d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+    />
+  </symbol>
+  <symbol
+    id="i-moon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
+  </symbol>
+  <symbol
+    id="i-check"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    width="14"
+    height="14"
+  >
+    <path d="M20 6 9 17l-5-5" />
+  </symbol>
+  <symbol
+    id="i-x"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    width="14"
+    height="14"
+  >
+    <path d="M18 6 6 18M6 6l12 12" />
+  </symbol>
+</svg>
+
+<header class="topbar">
+  <a routerLink="/" class="brand">De<span class="b mono">&#123;c0&#125;</span>dE</a>
+  <div class="top-actions">
+    <button
+      class="icon-btn"
+      title="Toggle theme"
+      aria-label="Toggle theme"
+      (click)="themeService.toggle()"
+    >
+      <svg class="icon">
+        <use [attr.href]="themeService.resolvedTheme() === 'dark' ? '#i-sun' : '#i-moon'" />
+      </svg>
+    </button>
+    <a routerLink="/" class="btn-outline">Back to home</a>
+  </div>
+</header>
+
+<main id="main" class="doc">
+  <p class="doc-eyebrow reveal">Brand</p>
+  <h1 class="reveal">De&#123;c0&#125;dE Brand Guide</h1>
+  <p class="sub reveal">
+    Logo, color, typography, and usage guidance for the De&#123;c0&#125;dE conference case study.
+  </p>
+
+  <section class="b-section reveal d1">
+    <h2>Logo</h2>
+    <div class="logo-showcase">
+      <span class="lockup">De<span class="b">&#123;c0&#125;</span>dE</span>
+    </div>
+  </section>
+
+  <section class="b-section reveal d1">
+    <h2>Colors</h2>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #e62e4d"></div>
+        <div class="swatch-info">
+          <p class="name">Brand Red</p>
+          <p class="hex mono">#e62e4d</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #e01e5a"></div>
+        <div class="swatch-info">
+          <p class="name">Brand Pink</p>
+          <p class="hex mono">#e01e5a</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #6929ca"></div>
+        <div class="swatch-info">
+          <p class="name">Brand Purple</p>
+          <p class="hex mono">#6929ca</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--text)"></div>
+        <div class="swatch-info">
+          <p class="name">Text</p>
+          <p class="hex mono">theme-dependent</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b-section reveal d2">
+    <h2>Gradient</h2>
+    <div class="gradient-strip"></div>
+    <p class="gradient-note mono">linear-gradient(135deg, #e62e4d 0%, #e01e5a 45%, #6929ca 100%)</p>
+  </section>
+
+  <section class="b-section reveal d2">
+    <h2>Typography</h2>
+    <div class="type-specimen">
+      <p class="t-name">Inter Tight — interface, headings, body</p>
+      <p class="type-display">Understand code, not just generate it.</p>
+    </div>
+    <div class="type-specimen">
+      <p class="t-name">JetBrains Mono — code, technical labels only</p>
+      <p class="type-code">const total = items.reduce((s, i) =&gt; s + i.price, 0)</p>
+    </div>
+  </section>
+
+  <section class="b-section reveal d3">
+    <h2>Usage</h2>
+    <div class="usage-grid">
+      <div class="usage-card do">
+        <div class="usage-label">
+          <svg class="icon" style="color: var(--success)"><use href="#i-check" /></svg> Do
+        </div>
+        <div class="mini-lockup gradient">De<span class="b">&#123;c0&#125;</span>dE</div>
+        <p>
+          Use the gradient sparingly — on the primary CTA or wordmark accent, against clear space.
+        </p>
+      </div>
+      <div class="usage-card dont">
+        <div class="usage-label">
+          <svg class="icon" style="color: var(--danger)"><use href="#i-x" /></svg> Don't
+        </div>
+        <div class="mini-lockup wrong gradient">De<span class="b">&#123;c0&#125;</span>dE</div>
+        <p>
+          Don't recolor the gradient, stretch the wordmark, or apply it as a full-page background.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a routerLink="/">Home</a>
+    <a routerLink="/terms">Terms</a>
+    <a routerLink="/brand">Brand</a>
+    <a routerLink="/privacy">Privacy</a>
+  </div>
+  <p>De&#123;c0&#125;dE — built for NG Kenya 2026</p>
+</footer>

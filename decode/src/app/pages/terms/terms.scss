@@ -1,0 +1,151 @@
+:host {
+  display: block;
+}
+
+header.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.brand {
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text);
+}
+.brand .b {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.btn-outline {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  background: var(--surface);
+  font-size: 13.5px;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  background: var(--surface-hover);
+}
+
+.doc {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.doc-eyebrow {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-subtle);
+  margin: 0 0 10px;
+}
+.doc h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+.doc .updated {
+  color: var(--text-subtle);
+  font-size: 13px;
+  margin: 0 0 28px;
+}
+
+.review-banner {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--warning-bg);
+  border: 1px solid var(--warning);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 36px;
+}
+.review-banner svg {
+  color: var(--warning);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.review-banner p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.doc h2 {
+  font-size: 19px;
+  font-weight: 600;
+  margin: 36px 0 12px;
+}
+.doc p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+.doc ul {
+  padding-left: 20px;
+  margin: 0 0 14px;
+}
+.doc li {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+}
+footer p {
+  color: var(--text-subtle);
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+.footer-links {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.footer-links a {
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: var(--text);
+}

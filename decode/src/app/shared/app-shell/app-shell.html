@@ -1,0 +1,189 @@
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+  <symbol
+    id="i-sun"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+  >
+    <circle cx="12" cy="12" r="4" />
+    <path
+      d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+    />
+  </symbol>
+  <symbol
+    id="i-moon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
+  </symbol>
+  <symbol
+    id="i-menu"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+  >
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </symbol>
+  <symbol
+    id="i-plus"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+  >
+    <path d="M12 5v14M5 12h14" />
+  </symbol>
+  <symbol
+    id="i-clock"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 3" />
+  </symbol>
+  <symbol
+    id="i-settings"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="12" cy="12" r="3" />
+    <path
+      d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1Z"
+    />
+  </symbol>
+  <symbol
+    id="i-user"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="12" cy="8" r="4" />
+    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+  </symbol>
+  <symbol
+    id="i-logout"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+  </symbol>
+  <symbol
+    id="i-x"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M18 6 6 18M6 6l12 12" />
+  </symbol>
+</svg>
+
+<div class="shell">
+  <aside class="sidebar" [class.open]="sidebarOpen">
+    <div class="sidebar-top">
+      <a routerLink="/" class="brand">De<span class="b mono">&#123;c0&#125;</span>dE</a>
+      <button
+        class="icon-btn"
+        title="Toggle theme"
+        aria-label="Toggle theme"
+        (click)="themeService.toggle()"
+      >
+        <svg class="icon">
+          <use [attr.href]="themeService.resolvedTheme() === 'dark' ? '#i-sun' : '#i-moon'" />
+        </svg>
+      </button>
+    </div>
+
+    <button class="new-analysis" (click)="onNewAnalysisClick()">
+      <svg class="icon"><use href="#i-plus" /></svg> New analysis
+    </button>
+
+    <div class="side-section">
+      <p class="side-label">Recent</p>
+      @for (entry of historyService.recent(); track entry.id) {
+        <div class="side-item" (click)="onRecentClick(entry.id)">
+          <svg class="icon"><use href="#i-clock" /></svg>
+          <span>{{ entry.summary }}</span>
+          <button
+            class="side-item-delete"
+            (click)="onDeleteRecentClick($event, entry.id)"
+            title="Delete"
+            aria-label="Delete analysis"
+          >
+            <svg class="icon" style="width: 12px; height: 12px"><use href="#i-x" /></svg>
+          </button>
+        </div>
+      } @empty {
+        <p style="font-size: 12.5px; color: var(--text-subtle); padding: 0 10px">No analyses yet</p>
+      }
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="avatar"></div>
+      <span>{{ authService.currentUser()?.email }}</span>
+      <div class="sidebar-bottom-links">
+        <a
+          class="icon-btn"
+          routerLink="/settings"
+          [class.active]="active === 'settings'"
+          title="Settings"
+          aria-label="Settings"
+        >
+          <svg class="icon"><use href="#i-settings" /></svg>
+        </a>
+        <a
+          class="icon-btn"
+          routerLink="/profile"
+          [class.active]="active === 'profile'"
+          title="Profile"
+          aria-label="Profile"
+        >
+          <svg class="icon"><use href="#i-user" /></svg>
+        </a>
+        <button class="icon-btn" (click)="logout()" title="Log out" aria-label="Log out">
+          <svg class="icon"><use href="#i-logout" /></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-header">
+      <button class="icon-btn mobile-menu-btn" aria-label="Open menu" (click)="toggleSidebar()">
+        <svg class="icon"><use href="#i-menu" /></svg>
+      </button>
+      <ng-content select="[shell-header]"></ng-content>
+    </div>
+
+    <div class="main-scroll">
+      <ng-content></ng-content>
+    </div>
+  </main>
+</div>

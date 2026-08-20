@@ -1,0 +1,170 @@
+<app-shell active="workspace" (newAnalysisRequested)="newAnalysis()">
+  <div shell-header>
+    <span class="lang-badge mono">{{ langBadge() }}</span>
+  </div>
+
+  <div class="center">
+    @if (viewState() === 'input') {
+      <div class="reveal">
+        @if (errorMessage()) {
+          <div class="analysis-error">{{ errorMessage() }}</div>
+        }
+        <textarea
+          [ngModel]="codeInput()"
+          (ngModelChange)="codeInput.set($event)"
+          placeholder="Paste your code…"
+        ></textarea>
+        <div
+          style="text-align: right; font-size: 11.5px; color: var(--text-subtle); margin-top: 4px"
+        >
+          {{ codeInput().length }} / {{ maxCodeLength }}
+        </div>
+        <div class="input-actions">
+          <button class="btn-primary" [disabled]="!codeInput().trim()" (click)="runAnalysis()">
+            Analyze →
+          </button>
+        </div>
+        <div class="examples">
+          <span class="example-chip" (click)="loadExample(1)">JS: undeclared variable</span>
+          <span class="example-chip" (click)="loadExample(2)">TS: async race condition</span>
+          <span class="example-chip" (click)="loadExample(3)">Python: O(n²) loop</span>
+        </div>
+      </div>
+    }
+
+    @if (viewState() === 'loading') {
+      <div>
+        <div class="skel-block">
+          <div class="skel-line w40" style="height: 11px; width: 80px; margin-bottom: 14px"></div>
+          <div class="skel-line w80"></div>
+          <div class="skel-line w60"></div>
+        </div>
+        <div class="skel-block">
+          <div class="skel-line w40" style="height: 11px; width: 100px; margin-bottom: 14px"></div>
+          <div class="skel-line w80"></div>
+          <div class="skel-line w80"></div>
+          <div class="skel-line w40"></div>
+        </div>
+      </div>
+    }
+
+    @if (viewState() === 'result' && result(); as r) {
+      <div>
+        <div class="block reveal">
+          <div class="block-label">Summary</div>
+          <p>{{ r.summary }}</p>
+        </div>
+
+        <div class="block reveal d1">
+          <div class="block-label">Explanation</div>
+          <p>{{ r.explanation }}</p>
+        </div>
+
+        <div class="block reveal d2">
+          <div class="block-label">Step by step</div>
+          <ol class="step-list">
+            @for (step of r.steps; track step) {
+              <li>{{ step }}</li>
+            }
+          </ol>
+        </div>
+
+        <div class="block">
+          <div class="block-label">
+            Issues
+            <span style="font-weight: 600; color: var(--text-subtle)"
+              >{{ r.issues.length }} found</span
+            >
+          </div>
+          @for (issue of r.issues; track issue.title) {
+            <div class="issue">
+              <span
+                class="sev"
+                [class.high]="issue.severity === 'high'"
+                [class.medium]="issue.severity === 'medium'"
+                [class.low]="issue.severity === 'low'"
+                >{{ issue.severity }}</span
+              >
+              <div>
+                <p class="issue-title">{{ issue.title }}</p>
+                <p class="issue-desc">{{ issue.description }}</p>
+              </div>
+            </div>
+          } @empty {
+            <p style="color: var(--text-subtle); font-size: 13.5px">No issues found.</p>
+          }
+        </div>
+
+        <div class="block">
+          <div class="block-label">Suggestions</div>
+          <p>{{ r.suggestions }}</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Refactored code</div>
+          <div class="refactor">
+            <div>
+              <p class="refactor-col-label">Before</p>
+              <pre class="mono">{{ r.refactorBefore }}</pre>
+            </div>
+            <div>
+              <p class="refactor-col-label">After</p>
+              <pre class="mono">{{ r.refactorAfter }}</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Quality score</div>
+          <div class="score-row">
+            <div class="score-item">
+              <div class="score-num">{{ r.score.maintainability }}</div>
+              <div class="score-name">Maintainability</div>
+            </div>
+            <div class="score-item">
+              <div class="score-num">{{ r.score.overallGrade }}</div>
+              <div class="score-name">Overall grade</div>
+            </div>
+            <div class="score-item">
+              <div class="score-num">{{ r.score.complexity }}</div>
+              <div class="score-name">Complexity</div>
+            </div>
+            <div class="score-item">
+              <div class="score-num">{{ r.score.readability }}</div>
+              <div class="score-name">Readability</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Follow up</div>
+          <div class="followups">
+            @for (fu of r.followUps; track fu) {
+              <span class="example-chip" (click)="askFollowup(fu)">{{ fu }}</span>
+            }
+          </div>
+        </div>
+
+        @if (isAskingFollowup()) {
+          <p style="color: var(--text-subtle); font-size: 13.5px">Thinking…</p>
+        }
+        @if (followupAnswer()) {
+          <div class="block">
+            <div class="block-label">Answer</div>
+            <p>{{ followupAnswer() }}</p>
+          </div>
+        }
+
+        <div class="followup-row">
+          <input
+            type="text"
+            [(ngModel)]="followupInput"
+            placeholder="Ask a follow-up question…"
+            (keyup.enter)="askFollowup()"
+          />
+          <button class="send-btn" (click)="askFollowup()">Send</button>
+        </div>
+      </div>
+    }
+  </div>
+</app-shell>

@@ -1,0 +1,125 @@
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+  <symbol
+    id="i-sun"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+  >
+    <circle cx="12" cy="12" r="4" />
+    <path
+      d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+    />
+  </symbol>
+  <symbol
+    id="i-moon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
+  </symbol>
+  <symbol
+    id="i-alert"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    width="18"
+    height="18"
+  >
+    <path
+      d="M12 9v4M12 17h.01M10.3 3.9 1.8 18.5A1.5 1.5 0 0 0 3.1 20.8h17.8a1.5 1.5 0 0 0 1.3-2.3L13.7 3.9a1.5 1.5 0 0 0-2.4 0Z"
+    />
+  </symbol>
+</svg>
+
+<header class="topbar">
+  <a routerLink="/" class="brand">De<span class="b mono">&#123;c0&#125;</span>dE</a>
+  <div class="top-actions">
+    <button
+      class="icon-btn"
+      title="Toggle theme"
+      aria-label="Toggle theme"
+      (click)="themeService.toggle()"
+    >
+      <svg class="icon">
+        <use [attr.href]="themeService.resolvedTheme() === 'dark' ? '#i-sun' : '#i-moon'" />
+      </svg>
+    </button>
+    <a routerLink="/" class="btn-outline">Back to home</a>
+  </div>
+</header>
+
+<main id="main" class="doc reveal">
+  <p class="doc-eyebrow">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated — draft, not yet published</p>
+
+  <div class="review-banner">
+    <svg class="icon"><use href="#i-alert" /></svg>
+    <p>
+      <strong>Draft for legal review.</strong> This page outlines the intended shape of the policy
+      based on the app's actual data handling (Firebase Authentication, Cloud Firestore, Gemini
+      API). It has not been reviewed by counsel and should not be treated as a final, binding policy
+      until it has.
+    </p>
+  </div>
+
+  <h2>What we collect</h2>
+  <p>
+    De&#123;c0&#125;dE collects the information needed to operate your account and the code you
+    choose to submit for analysis:
+  </p>
+  <ul>
+    <li>
+      Account information from Firebase Authentication (email, or your Google account's basic
+      profile if you sign in with Google).
+    </li>
+    <li>
+      Code snippets you paste for analysis, and the resulting AI analysis, conversations, and
+      follow-up questions — stored in Cloud Firestore under your account.
+    </li>
+    <li>Basic app preferences (theme, workspace density, explanation level).</li>
+  </ul>
+
+  <h2>How it's used</h2>
+  <p>
+    Your code and questions are sent to the Gemini API to generate the analysis you see. Your data
+    is used to operate your workspace, save your history, and is not sold or shared with
+    advertisers.
+  </p>
+
+  <h2>Where it's stored</h2>
+  <p>
+    Account and workspace data is stored in Cloud Firestore under your user ID, protected by
+    Firebase Security Rules so only you can read or write your own data.
+  </p>
+
+  <h2>Your controls</h2>
+  <p>
+    You can edit your profile, change preferences, and permanently delete your account and all
+    associated data from the Settings page at any time.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this policy can be sent to <span class="mono">hello&#64;aymanissa.dev</span>.
+  </p>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a routerLink="/">Home</a>
+    <a routerLink="/terms">Terms</a>
+    <a routerLink="/brand">Brand</a>
+    <a routerLink="/privacy">Privacy</a>
+  </div>
+  <p>De&#123;c0&#125;dE — built for NG Kenya 2026</p>
+</footer>

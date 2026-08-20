@@ -1,0 +1,151 @@
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+  <symbol
+    id="i-trash"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path
+      d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"
+    />
+  </symbol>
+</svg>
+
+<app-shell active="settings">
+  <div shell-header>
+    <h1>Settings</h1>
+  </div>
+
+  <div class="center">
+    <div class="settings-group reveal">
+      <h2>Theme</h2>
+      <p class="desc">Choose how De&#123;c0&#125;dE looks on this device.</p>
+      <div class="pill-group" role="radiogroup" aria-label="Theme">
+        <button
+          class="pill"
+          [class.active]="themeService.choice() === 'system'"
+          (click)="setThemeChoice('system')"
+        >
+          System
+        </button>
+        <button
+          class="pill"
+          [class.active]="themeService.choice() === 'light'"
+          (click)="setThemeChoice('light')"
+        >
+          Light
+        </button>
+        <button
+          class="pill"
+          [class.active]="themeService.choice() === 'dark'"
+          (click)="setThemeChoice('dark')"
+        >
+          Dark
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-group reveal d1">
+      <h2>Workspace density</h2>
+      <p class="desc">Compact tightens spacing across the workspace.</p>
+      <div class="pill-group">
+        <button
+          class="pill"
+          [class.active]="settingsService.density() === 'comfortable'"
+          (click)="setDensity('comfortable')"
+        >
+          Comfortable
+        </button>
+        <button
+          class="pill"
+          [class.active]="settingsService.density() === 'compact'"
+          (click)="setDensity('compact')"
+        >
+          Compact
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-group reveal d1">
+      <h2>Explanation level</h2>
+      <p class="desc">Controls how much detail the AI includes in analyses.</p>
+      <div class="pill-group">
+        <button
+          class="pill"
+          [class.active]="settingsService.explanationLevel() === 'beginner'"
+          (click)="setExplanationLevel('beginner')"
+        >
+          Beginner
+        </button>
+        <button
+          class="pill"
+          [class.active]="settingsService.explanationLevel() === 'intermediate'"
+          (click)="setExplanationLevel('intermediate')"
+        >
+          Intermediate
+        </button>
+        <button
+          class="pill"
+          [class.active]="settingsService.explanationLevel() === 'advanced'"
+          (click)="setExplanationLevel('advanced')"
+        >
+          Advanced
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-group reveal d2">
+      <h2>Motion</h2>
+      <div class="switch-row">
+        <div>
+          <div class="label">Full motion</div>
+          <div class="sub">Entrance animations, transitions, skeleton shimmer</div>
+        </div>
+        <label class="switch">
+          <input
+            type="checkbox"
+            [checked]="settingsService.motionEnabled()"
+            (change)="toggleMotion()"
+          />
+          <span class="track"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-group reveal d2">
+      <h2>Code preferences</h2>
+      <p class="desc">Editor font size in the code input and result blocks.</p>
+      <div class="slider-row">
+        <input
+          type="range"
+          min="12"
+          max="18"
+          [value]="settingsService.fontSize()"
+          (input)="onFontSliderInput($event)"
+        />
+        <span class="slider-val mono">{{ settingsService.fontSize() }}px</span>
+      </div>
+    </div>
+
+    <div class="settings-group reveal d3">
+      <h2>Danger zone</h2>
+      <div class="danger-zone">
+        <h3>Delete account</h3>
+        <p>
+          Permanently deletes your account, all projects, and all conversation history. This can't
+          be undone.
+        </p>
+        @if (deleteError()) {
+          <p style="color: var(--danger); font-size: 13px; margin: 0 0 12px">{{ deleteError() }}</p>
+        }
+        <button class="btn-danger" [disabled]="isDeleting()" (click)="deleteAccount()">
+          <svg class="icon"><use href="#i-trash" /></svg>
+          {{ isDeleting() ? 'Deleting…' : 'Delete account' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</app-shell>

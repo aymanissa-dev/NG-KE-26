@@ -1,0 +1,125 @@
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+  <symbol id="i-google" viewBox="0 0 24 24">
+    <path
+      fill="#4285F4"
+      d="M22.5 12.23c0-.79-.07-1.54-.2-2.27H12v4.3h5.9a5.05 5.05 0 0 1-2.2 3.32v2.76h3.55c2.08-1.92 3.25-4.74 3.25-8.1Z"
+    />
+    <path
+      fill="#34A853"
+      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.55-2.76c-.99.66-2.25 1.05-3.73 1.05-2.87 0-5.3-1.94-6.17-4.54H2.16v2.85A11 11 0 0 0 12 23Z"
+    />
+    <path
+      fill="#FBBC05"
+      d="M5.83 14.09A6.6 6.6 0 0 1 5.48 12c0-.73.13-1.44.35-2.09V7.06H2.16A11 11 0 0 0 1 12c0 1.78.43 3.46 1.16 4.94l3.67-2.85Z"
+    />
+    <path
+      fill="#EA4335"
+      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1a11 11 0 0 0-9.84 6.06l3.67 2.85C6.7 7.32 9.13 5.38 12 5.38Z"
+    />
+  </symbol>
+  <symbol
+    id="i-eye"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
+    <circle cx="12" cy="12" r="3" />
+  </symbol>
+  <symbol
+    id="i-eye-off"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path
+      d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a20.3 20.3 0 0 1 5.06-5.94M9.9 4.24A10.4 10.4 0 0 1 12 4c7 0 11 7 11 7a20.3 20.3 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+    />
+    <path d="M1 1l22 22" />
+  </symbol>
+</svg>
+
+<div class="split">
+  <div class="promo reveal">
+    <a routerLink="/" class="brand">De<span class="b mono">&#123;c0&#125;</span>dE</a>
+    <div class="promo-copy">
+      <h2>Understand code, not just generate it.</h2>
+      <p>
+        Paste a snippet and get a structured breakdown — summary, issues, suggestions, and a quality
+        score.
+      </p>
+    </div>
+    <pre class="promo-code mono">
+CodeAnalysis &#123;
+  summary: string
+  bugs: CodeIssue[]
+  score: CodeQualityScore
+&#125;</pre>
+  </div>
+
+  <main id="main" class="form-side">
+    <div class="form-box reveal d1">
+      <h1>Welcome back</h1>
+      <p class="sub">Log in to continue to your workspace.</p>
+
+      @if (errorMessage()) {
+        <div class="error show" role="alert">
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      <button class="btn btn-outline" type="button" (click)="onGoogleSignIn()">
+        <svg class="icon" aria-hidden="true"><use href="#i-google" /></svg> Continue with Google
+      </button>
+      <div class="divider">or</div>
+
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+        <div class="field no-icon">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input
+            [type]="showPassword() ? 'text' : 'password'"
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            autocomplete="current-password"
+            required
+          />
+          <button
+            type="button"
+            class="eye-btn"
+            [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+            (click)="togglePasswordVisibility()"
+          >
+            <svg class="icon"><use [attr.href]="showPassword() ? '#i-eye-off' : '#i-eye'" /></svg>
+          </button>
+        </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="loginForm.invalid || isSubmitting()"
+        >
+          {{ isSubmitting() ? 'Logging in…' : 'Log in' }}
+        </button>
+      </form>
+
+      <p class="foot-link">Don't have an account? <a routerLink="/register">Sign up</a></p>
+    </div>
+  </main>
+</div>
