@@ -25,19 +25,17 @@ A 22-chapter, self-contained walkthrough that rebuilds `decode/` from an empty f
 
 ## slides/
 
-The talk deck for the NG Kenya 2026 session.
-
-_In progress — content coming._
+The talk deck — 40 slides covering the problem, the architecture, every major technical decision (and why the alternatives were passed on), the real story of hitting a persistent Gemini API wall and pivoting to Hugging Face, product craft, and lessons learned.
 
 ## Talk
 
 **"From Idea to MVP: Building AI-Powered Angular Apps with Firebase"**
-NG Kenya 2026 — 40-minute session
+NG Kenya 2026 — 60-minute session (slides + live codelab)
 
 ## Author
 
 **Ayman Issa**
-[aymanissa.dev](https://aymanissa.dev) · [@aymanissa-dev](https://github.com/aymanissa-dev) · [@aymanissa_dev](https://x.com/aymanissa_dev)
+[Website](https://aymanissa.dev) · [LinkedIn](https://www.linkedin.com/in/aymanissa-dev/) · [X](https://x.com/aymanissa_dev)
 
 ## License
 
